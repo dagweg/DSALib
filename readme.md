@@ -1,4 +1,4 @@
-### DSA Library
+# DSA Library
 
 This C++ library provides implementations of common data structures and algorithms. It includes classes for binary trees and associated operations such as insertion, traversal, and search.
 
@@ -19,11 +19,10 @@ The DSA Library is designed to provide developers with a collection of fundament
 To use the DSA Library in your C++ projects, follow these steps:
 
 - Clone the repository to your local machine:
-- bash
-- Copy code
 
-git clone https://github.com/yourusername/dsa-library.git
-
+```cpp
+git clone https://github.com/dagweg/DSALib.git
+```
 - Include the necessary header files (BinaryTree.h, TreeNode.h, etc.) in your C++ project.
 - Compile your project with the DSA Library files.
 
