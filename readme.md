@@ -74,7 +74,3 @@ The DSA Library currently supports the following operations:
 
 Contributions to the DSA Library are welcome! If you encounter bugs, have feature requests, or want to contribute improvements, please feel free to submit issues and pull requests on GitHub.
 
-**License**
-
-This project is licensed under the MIT License.
-
