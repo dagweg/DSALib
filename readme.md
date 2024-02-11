@@ -30,7 +30,7 @@ git clone https://github.com/dagweg/DSALib.git
 
 Here's a basic example of how to use the DSA Library:
 
-```
+```cpp
 #include <iostream>
 
 #include "binary_tree.h"
