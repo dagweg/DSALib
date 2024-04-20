@@ -1,5 +1,5 @@
 #include <iostream>
-#include <graph.hpp>
+#include "graph.hpp"
 #include <algorithm>
 
 using namespace ::std;
@@ -81,8 +81,8 @@ void Graph<T>::_removeEdge(const T vertex1, const T vertex2)
         cerr << "The edge you are trying to remove is not present.";
         return;
     }
-
+    
     // Disassociate the vertices
-    neighbors1.erase(it1);
-    neighbors2.erase(it2);
+    neighbors1.erase(iter1);
+    neighbors2.erase(iter2);
 }

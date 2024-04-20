@@ -3,4 +3,7 @@
 
 int main()
 {
+    Graph<string> graph;
+    graph.addEdge("a","b");
+    
 }
