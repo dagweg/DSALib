@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Tuple
 from math import floor
 
 class Node:
@@ -9,10 +9,14 @@ class Node:
 
 class MaxHeap:
   def __init__(self):
-    self.heap = []
+    self.heap = [] # store the heap values
+    self.heapd = [] # store the deleted heap values
 
   def insert(self,value: int):
     self.heap.append(value)
+    self._sift_up()
+
+  def _sift_up(self):
     N = len(self.heap)
     i,p = N-1, N-1
     
@@ -21,11 +25,51 @@ class MaxHeap:
       if self.heap[p] < self.heap[i]:
         self.heap[p], self.heap[i] = self.heap[i], self.heap[p]
       i = p
-    
-    print(self.heap)
 
   def delete(self):
-    pass
+    N = len(self.heap)
+    
+    # Handle Case Empty
+    if N == 0: return
+      
+    # Add the deleted first elem to heapd
+    self.heapd.append(self.heap[0]) 
+
+    # Bring the last elem to first
+    self.heap[0] = self.heap[-1]
+
+    # Splice the heap upto last index
+    self.heap = self.heap[:-1]
+
+    # Perform operations to convert the modified heap back to max-heap
+    i = 0
+
+    while True:
+      left = i*2 + 1
+      right = i*2 + 2
+
+      # Out of bounds check
+      if right + 1 > N or left + 1 > N: break
+
+      max_elem, max_i = self._get_max(self.heap,left,right) 
+
+      # The element is in its right position so break
+      if self.heap[i] > max_elem: break
+
+      # Perform a swap to bubble up the max element upward the tree
+      if self.heap[i] < max_elem:
+        self.heap[i], self.heap[max_i] = self.heap[max_i], self.heap[i]
+
+      i = max_i
+
+    
+    # print(self.heap)
+
+  # Helper function that returns a tuple (max_element,index) | Provided that i & j are within bounds of arr
+  def _get_max(self,arr: List,i: int,j: int) -> Tuple[int,int]:
+    if arr[j] > arr[i]:
+      return (arr[j],j)
+    return (arr[i],i)
 
   def heapify(self, arr: List):
     pass
@@ -34,12 +78,20 @@ class MaxHeap:
     pass
 
 
+  def __repr__(self):
+    return self.heap
+
+
 heap = MaxHeap()
 
-heap.insert(0)
-heap.insert(1)
-heap.insert(2)
-heap.insert(3)
-heap.insert(4)
-heap.insert(9)
-heap.insert(11)
+# heap.insert(10)
+# heap.insert(20)
+# heap.insert(30)
+# heap.insert(40)
+# heap.insert(50)
+
+heap.delete()
+
+print(heap.__repr__())
+
+
