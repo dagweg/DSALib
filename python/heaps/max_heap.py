@@ -9,8 +9,12 @@ class Node:
     self.right = right
 
 class MaxHeap:
-  def __init__(self):
-    self.heap = [] # store the heap values
+  def __init__(self,arr:List[int]=[]):
+    if arr:
+      self.heap = self.heapify(arr)
+    else: 
+      self.heap = [] 
+
     self.heapd = [] # store the deleted heap values
 
   def insert(self,value: int):
@@ -27,6 +31,30 @@ class MaxHeap:
         self.heap[p], self.heap[i] = self.heap[i], self.heap[p]
       i = p
 
+  def _sift_down(self,arr,i):
+    N = len(arr)
+    while True:
+      left = i * 2 + 1 
+      right = i * 2 + 2
+
+      # Out of bounds check
+      if right >= N and left >= N: 
+        break
+      elif right >= N:
+        max_i = left
+      elif left  >= N:
+        max_i = right
+      else:
+        max_i = self._get_max(left,right,arr)
+      
+      # print('how in the world' ,arr[i],arr[max_i])
+      if arr[i] < arr[max_i]:
+        arr[i], arr[max_i]  = arr[max_i] , arr[i]
+      else:
+        break;
+      
+      i = max_i
+
   def delete(self):
     N = len(self.heap)
     
@@ -41,6 +69,7 @@ class MaxHeap:
 
     # Splice the heap upto last index
     self.heap = self.heap[:-1]
+    N-=1
 
     # Perform operations to convert the modified heap back to max-heap
     i = 0
@@ -50,30 +79,39 @@ class MaxHeap:
       right = i*2 + 2
 
       # Out of bounds check
-      if right + 1 > N: break
-
-      max_elem, max_i = self._get_max(self.heap,left,right) 
+      if right + 1 > N and left + 1 > N: break
+      elif right + 1 > N:
+        max_i = left
+      elif left + 1 > N:
+        max_i = right
+      else:
+        max_i = self._get_max(left,right,self.heap)
 
       # The element is in its right position so break
-      if self.heap[i] > max_elem: break
+      if self.heap[i] > self.heap[max_i]: break
 
       # Perform a swap to bubble up the max element upward the tree
-      if self.heap[i] < max_elem:
+      if self.heap[i] < self.heap[max_i]:
         self.heap[i], self.heap[max_i] = self.heap[max_i], self.heap[i]
 
       i = max_i
 
 
   # Helper function that returns a tuple (max_element,index) | Provided that i & j are within bounds of arr
-  def _get_max(self,arr: List,i: int,j: int) -> Tuple[int,int]:
+  def _get_max(self,i:int,j:int, arr) -> int:
     if arr[j] > arr[i]:
-      return (arr[j],j)
-    return (arr[i],i)
+      return j
+    return i
 
   # It converts the input array into max-heap array & return it
-  def heapify(arr: List[int]) -> List[int]:
-    pass    
-
+  def heapify(self,arr: List[int]) -> List[int]:
+    if not arr: return []
+    _arr = arr[:]
+    N = len(_arr)
+    for i in range(N-1,-1,-1):
+      self._sift_down(_arr,i)
+    return _arr
+    
   # Checks if input array is max-heap or not
   def is_max_heap(self,arr: List[int]) -> bool:
     i = 0
@@ -103,17 +141,26 @@ class MaxHeap:
     return self.heap
 
 
-heap = MaxHeap()
+heap = MaxHeap([4, 10, 3, 5, 1, 10, 4])
 
-heap.insert(10)
-heap.insert(20)
-heap.insert(30)
-heap.insert(40)
-heap.insert(50)
+print(heap.is_max_heap(heap.__repr__()))
+
+
+# heap.insert(10)
+# heap.insert(20)
+# heap.insert(30)
+# heap.insert(40)
+# heap.insert(50)
 
 # heap.delete()
 
+# arr = [4, 10, 3, 5, 1, 10, 4]
 
-print(heap.is_max_heap([5,4,3,2,1]))
+# print(arr)
+
+# print(heap.__repr__())
+# print(heap.is_max_heap(arr)) # false 
+
+
 
 
