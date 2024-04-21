@@ -1,4 +1,5 @@
 from typing import List, Tuple
+from queue import Queue
 from math import floor
 
 class Node:
@@ -49,7 +50,7 @@ class MaxHeap:
       right = i*2 + 2
 
       # Out of bounds check
-      if right + 1 > N or left + 1 > N: break
+      if right + 1 > N: break
 
       max_elem, max_i = self._get_max(self.heap,left,right) 
 
@@ -62,8 +63,6 @@ class MaxHeap:
 
       i = max_i
 
-    
-    # print(self.heap)
 
   # Helper function that returns a tuple (max_element,index) | Provided that i & j are within bounds of arr
   def _get_max(self,arr: List,i: int,j: int) -> Tuple[int,int]:
@@ -71,8 +70,30 @@ class MaxHeap:
       return (arr[j],j)
     return (arr[i],i)
 
-  def heapify(self, arr: List):
-    pass
+  # It converts the input array into max-heap array & return it
+  def heapify(arr: List[int]) -> List[int]:
+    pass    
+
+  # Checks if input array is max-heap or not
+  def is_max_heap(self,arr: List[int]) -> bool:
+    i = 0
+    N = len(arr)
+    q = Queue()
+    q.put(0)
+    while not q.empty():
+      i  = q.get()
+      left = i * 2 + 1
+      right = i * 2 + 2
+
+      if 0 <= left < N:
+        if arr[i] < arr[left]: return False
+        q.put(left)
+      if 0 <= right < N:
+        if arr[i] < arr[right]: return False
+        q.put(right)
+
+    return True
+
 
   def get_array(self):
     pass
@@ -84,14 +105,15 @@ class MaxHeap:
 
 heap = MaxHeap()
 
-# heap.insert(10)
-# heap.insert(20)
-# heap.insert(30)
-# heap.insert(40)
-# heap.insert(50)
+heap.insert(10)
+heap.insert(20)
+heap.insert(30)
+heap.insert(40)
+heap.insert(50)
 
-heap.delete()
+# heap.delete()
 
-print(heap.__repr__())
+
+print(heap.is_max_heap([5,4,3,2,1]))
 
 
