@@ -1,76 +1,75 @@
-# DSA Library
+# Data Structures Library | Python & C++
 
-This C++ library provides implementations of common data structures and algorithms. It includes classes for binary trees and associated operations such as insertion, traversal, and search.
+This Python & Cpp library provides a collection of data structures for various computational needs. From graphs to heaps, trees to queues, this library offers a comprehensive set of tools for managing and manipulating data efficiently.
+<br>
+<br>
 
-## Table of Contents**
+# Features
 
-- Overview
-- Installation
-- Usage
-- Supported Operations
-- Contributing
+- **MaxHeap**: Create and manipulate max-heap data structures.
 
-**Overview**
+- **Graph**: Implement and traverse graphs with ease.
 
-The DSA Library is designed to provide developers with a collection of fundamental data structures and algorithms commonly used in computer science and software engineering projects. It aims to be easy to use, efficient, and well-documented.
+- **BinarySearchTree**: Perform operations on binary search trees.
 
-**Installation**
+- **Queue**: Utilize different queue implementations.
 
-To use the DSA Library in your C++ projects, follow these steps:
+- **LinkedList**: Work with linked list data structures.
+  ...and more: Additional data structures will be continually added.
+  <br>
+  <br>
 
-- Clone the repository to your local machine:
+# Installation
 
-```cpp
-git clone https://github.com/dagweg/DSALib.git
+You can install Data Structures Library using pip:
+
+pip install DataStructuresLibrary
+<br>
+<br>
+
+# Usage
+
+```python
+from python.heaps.max_heap import MaxHeap
+
+# Create a max-heap
+
+heap = MaxHeap([4, 10, 3, 5, 1, 10, 4])
+
+# Insert elements
+
+heap.insert(8)
+
+# Delete elements
+
+heap.delete()
+
+# Sort elements
+
+sorted_array = heap.heap_sort()
+
+# Check if array is max-heap
+
+is_heap = heap.is_max_heap([4, 10, 3, 5, 1, 10, 4])
+
+# Get heap size
+
+size = heap.get_size()
+
+# Get deleted elements
+
+deleted_elements = heap.deleted()
 ```
-- Include the necessary header files (BinaryTree.h, TreeNode.h, etc.) in your C++ project.
-- Compile your project with the DSA Library files.
 
-**Usage**
+# Goal
 
-Here's a basic example of how to use the DSA Library:
+To create a huge library of data structures & algorithms that are easily accessible & blazing fast.
+The code will be constantly improved (both efficiency & readability wise) & its currently being actively maintained.
 
-```cpp
-#include <iostream>
+# Contributing
 
-#include "binary_tree.h"
+Contributions are welcome! Feel free to open issues or pull requests to suggest improvements or add new data structures.
 
-int main() {
+# License
 
-    BinaryTree<int> *tree = new BinaryTree<int>();
-
-    tree->insert(7);
-
-    tree->insert(4);
-
-    tree->insert(5);
-
-    tree->insert(9);
-
-    tree->insert(8);
-
-    // Perform operations on the tree
-
-    tree->levelOrderTraversal();
-
-    delete tree; // Remember to free memory
-
-    return 0;
-
-}
-
-```
-
-**Supported Operations**
-
-The DSA Library currently supports the following operations:
-
-- Insertion of elements into a binary tree
-- Searching for elements in a binary tree
-- Traversal of binary trees (inorder, preorder, postorder, level-order)
-- Retrieving the height and size of a binary tree
-
-**Contributing**
-
-Contributions to the DSA Library are welcome! If you encounter bugs, have feature requests, or want to contribute improvements, please feel free to submit issues and pull requests on GitHub.
-
+This library is licensed under the MIT License.
