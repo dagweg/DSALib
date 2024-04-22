@@ -132,19 +132,31 @@ class MaxHeap:
 
     return True
 
+  # Performs sorting by making use of the deleted elements
+  def heap_sort(self) -> List[int]:
+    arr = MaxHeap(self.heap)
+    while not arr.empty():
+      arr.delete()
+    return arr.deleted()[::-1]
+  
+  def get_size(self) -> int:
+    return len(self.heap)
+  
+  def deleted(self) -> List[int]:
+    return self.heapd
+  
+  def empty(self) -> bool:
+    return self.heap == []
 
-  def get_array(self):
-    pass
-
-
-  def __repr__(self):
-    return self.heap
+  def __repr__(self) -> str:
+    return f"{self.heap}"
 
 
 heap = MaxHeap([4, 10, 3, 5, 1, 10, 4])
 
-print(heap.is_max_heap(heap.__repr__()))
 
+print('Before sorting ', heap.__repr__())
+print('After sorting ', heap.heap_sort())
 
 # heap.insert(10)
 # heap.insert(20)
