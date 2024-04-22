@@ -21,9 +21,12 @@ This Python & Cpp library provides a collection of data structures for various c
 
 # Installation
 
-You can install Data Structures Library using pip:
+Until the library gets registered to pypi for usage with python package manager-- you can still clone the repo & use it for your needs.
 
-pip install DataStructuresLibrary
+```bash
+git clone https://github.com/dagweg/DSALib.git
+```
+
 <br>
 <br>
 
