@@ -55,7 +55,7 @@ class MaxHeap:
       
       i = max_i
 
-  def delete(self):
+  def extract_max(self) -> int:
     N = len(self.heap)
     
     # Handle Case Empty
@@ -95,7 +95,8 @@ class MaxHeap:
         self.heap[i], self.heap[max_i] = self.heap[max_i], self.heap[i]
 
       i = max_i
-
+    
+    return self.heapd[-1]
 
   # Helper function that returns a tuple (max_element,index) | Provided that i & j are within bounds of arr
   def _get_max(self,i:int,j:int, arr) -> int:
@@ -133,45 +134,49 @@ class MaxHeap:
     return True
 
   # Performs sorting by making use of the deleted elements
-  def heap_sort(self) -> List[int]:
+  def sort(self) -> List[int]:
     arr = MaxHeap(self.heap)
     while not arr.empty():
-      arr.delete()
-    return arr.deleted()[::-1]
+      arr.extract_max()
+    return arr.get_deleted_array()[::-1]
   
   def get_size(self) -> int:
     return len(self.heap)
   
-  def deleted(self) -> List[int]:
+  def get_max(self) -> int:
+    return self.heap[0]
+
+  def peek(self) -> int:
+    return self.get_max()
+  
+  def get_deleted_array(self) -> List[int]:
     return self.heapd
   
   def empty(self) -> bool:
     return self.heap == []
 
-  def __repr__(self) -> str:
-    return f"{self.heap}"
+  def get_array(self) -> List[int]:
+    return self.heap
 
 
 heap = MaxHeap([4, 10, 3, 5, 1, 10, 4])
 
 
 print('Before sorting ', heap.__repr__())
-print('After sorting ', heap.heap_sort())
+print('After sorting ', heap.sort())
 
-# heap.insert(10)
-# heap.insert(20)
-# heap.insert(30)
-# heap.insert(40)
-# heap.insert(50)
+heap.insert(10)
+heap.insert(20)
+heap.insert(30)
+heap.insert(40)
+heap.insert(50)
 
-# heap.delete()
-
-# arr = [4, 10, 3, 5, 1, 10, 4]
-
-# print(arr)
-
-# print(heap.__repr__())
-# print(heap.is_max_heap(arr)) # false 
+print(heap.get_max())
+print(heap.extract_max())
+print(heap.insert(1111))
+print(heap.get_array())
+print(heap.extract_max())
+print(heap.get_array())
 
 
 
